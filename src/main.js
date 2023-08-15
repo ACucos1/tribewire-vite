@@ -38,7 +38,7 @@ tl.from(".word-wrapper h1", {y: "200px", duration: 0.5, stagger: 0.1})
     pin: ".stills-section",
     id: 'stills-pin',
     scrub: true,
-    markers: true
+    markers: false
   }}).fromTo(".still-img",
             {y: 200, opacity: 0, autoAlpha: 0}, 
             {y: -200, opacity: 1, autoAlpha: 1, stagger: .1})
