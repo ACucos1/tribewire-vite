@@ -32,7 +32,7 @@ function animate() {
   let stillsScrollTl = gsap.timeline({ scrollTrigger: {
     trigger: stills,
     start: "center center",
-    end: "400% top",
+    end: "100% top",
     pin: ".stills-section",
     id: 'stills-pin',
     scrub: true,
