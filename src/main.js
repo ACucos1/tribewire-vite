@@ -48,6 +48,7 @@ function animate() {
       // .to(".stills-img-wrapper", {y: "-100%"}, "entrance")
 }
 
+
 // Initialize Lenis (smooth scroll)
 const lenis = new Lenis({duration: 1.2})
 function raf(time) {
@@ -60,11 +61,14 @@ requestAnimationFrame(raf)
 
 
 if(document.readyState !== 'loading'){
-  animate()
+  init()
 }
 else {
   document.addEventListener("DOMContentLoaded", (e) => {
-    animate()
+    init()
   })
 }
  	
+function init() {
+  animate()
+}

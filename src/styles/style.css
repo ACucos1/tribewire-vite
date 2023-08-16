@@ -36,3 +36,29 @@ border-radius: 100%;
 border: 4px solid gray;
 display: inline-block;
 }
+
+#motion-svg rect {
+  fill: #282828;
+}
+
+#motion-svg > rect{
+  clip-path: url(#motion-clip);
+}
+
+.clipped-video{
+  clip-path: url(#motion-clip);
+}
+
+#motion-svg text {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 21vw;
+}
+
+#motion-svg {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
