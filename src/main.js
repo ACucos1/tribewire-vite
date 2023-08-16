@@ -36,7 +36,7 @@ function animate() {
     pin: ".stills-section",
     id: 'stills-pin',
     scrub: true,
-    markers: true
+    markers: false
   }}).fromTo(".img1",
             {y:300, opacity: 0, autoAlpha: 0}, 
             {y: 0, opacity: 1, autoAlpha: 1})
