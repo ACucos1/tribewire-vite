@@ -32,15 +32,19 @@ function animate() {
   let stillsScrollTl = gsap.timeline({ scrollTrigger: {
     trigger: stills,
     start: "center center",
-    end: "600% top",
+    end: "400% top",
     pin: ".stills-section",
     id: 'stills-pin',
     scrub: true,
-    markers: false
-  }}).fromTo(".still-img",
-            {y: 200, opacity: 0, autoAlpha: 0}, 
-            {y: -200, opacity: 1, autoAlpha: 1, stagger: .1})
+    markers: true
+  }}).fromTo(".img1",
+            {y:300, opacity: 0, autoAlpha: 0}, 
+            {y: 0, opacity: 1, autoAlpha: 1})
       .add("entrance", "+= 0")
+      .fromTo(".img2", {y:200,opacity: 0, autoAlpha: 0}, 
+            {y: 0, opacity: 1, autoAlpha: 1}, "entrance+=0.1")
+      .fromTo(".img3", {y:400,opacity: 0, autoAlpha: 0}, 
+            {y: 0, opacity: 1, autoAlpha: 1}, "entrance+=0.2")
       // .to(".stills-img-wrapper", {y: "-100%"}, "entrance")
 }
 
