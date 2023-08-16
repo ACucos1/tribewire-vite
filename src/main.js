@@ -17,15 +17,15 @@ function animate() {
   let featuredScrollTl = gsap.timeline({ scrollTrigger: {
     trigger: svg,
     start: "bottom center",
-    end: "3500% top",
+    end: "2000% top",
     pin: '.featured-section',
     scrub: true,
     markers: false
   }})
   .to(svg, {strokeDasharray: "100, 0, 200, 0"})
-  .add("afterStroke").to("#rect2, #rect3, #rect6, #rect8", {width: 0, stagger: .5}, "afterStroke")
+  .add("afterStroke", "+=0").to("#rect2, #rect3, #rect6, #rect8", {width: 0, stagger: .5}, "afterStroke")
   .to("#rect1, #rect4, #rect5, #rect7", {height: 0, stagger: .5}, "afterStroke")
-  .fromTo(".featured-project", {y: 200, opacity: 0, autoAlpha: 1}, {y: 0, opacity: 1, autoAlpha: 1, stagger: .5 })
+  .fromTo(".featured-project", {y: 200, opacity: 0, autoAlpha: 1}, {y: 0, opacity: 1, autoAlpha: 1, stagger: .5 }, "afterStroke+=0")
 
 
   let stills = document.querySelector(".stills-text-img")
