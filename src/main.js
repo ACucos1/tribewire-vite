@@ -46,7 +46,25 @@ function animate() {
       .fromTo(".img3", {y:400,opacity: 0, autoAlpha: 0}, 
             {y: 0, opacity: 1, autoAlpha: 1}, "entrance+=0.2")
       // .to(".stills-img-wrapper", {y: "-100%"}, "entrance")
+
+  let motion = document.querySelector(".motion-section")
+  gsap.set("#motion-svg-text", {
+    transformOrigin: "center center"
+  });
+
+  console.log(motion);
+  let motionScrollTl = gsap.timeline({ scrollTrigger: {
+    trigger: motion,
+    start: "center center",
+    end: "300% top",
+    pin: '.motion-section',
+    id: "motion-pin",
+    scrub: true,
+    // markers: true
+  }}).fromTo("#motion-svg-text", { scale: 20 }, { scale: 1})
 }
+
+
 
 
 // Initialize Lenis (smooth scroll)

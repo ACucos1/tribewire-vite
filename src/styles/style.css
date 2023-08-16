@@ -55,6 +55,10 @@ display: inline-block;
   font-size: 21vw;
 }
 
+#motion-clip {
+  transform-origin: center;
+}
+
 #motion-svg {
   position: absolute;
   width: 100%;
