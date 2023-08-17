@@ -67,6 +67,13 @@ display: inline-block;
   height: 100%;
 }
 
+.skyline {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 /* .aerials svg {
   stroke-dasharray: 100, 0, 200, 0;
 } */
