@@ -66,3 +66,7 @@ display: inline-block;
   left: 0;
   height: 100%;
 }
+
+/* .aerials svg {
+  stroke-dasharray: 100, 0, 200, 0;
+} */

@@ -7,7 +7,6 @@ import './styles/style.css'
 function animate() {
   let tl = gsap.timeline()
   let els = document.querySelectorAll(".hero-container > *")
-  console.log(els)
   tl.fromTo([els[0], els[1]], {opacity: 0, autoAlpha: 0, y: "200px"}, {y: 0, opacity: 1, autoAlpha: 1, duration: 1, delay: 2, stagger: 0.1})
   .add("start", "+=0")
   .from([els[2], els[3]], {width: 0, duration: 0.5}, "start")
@@ -52,7 +51,6 @@ function animate() {
     transformOrigin: "center center"
   });
 
-  console.log(motion);
   let motionScrollTl = gsap.timeline({ scrollTrigger: {
     trigger: motion,
     start: "center center",
@@ -60,8 +58,31 @@ function animate() {
     pin: '.motion-section',
     id: "motion-pin",
     scrub: true,
-    // markers: true
+    markers: false
   }}).fromTo("#motion-svg-text", { scale: 20 }, { scale: 1})
+
+  let aerials = document.querySelector(".aerials svg")
+  let skyline = document.querySelector(".skyline svg")
+  let aerialsScrollTl = gsap.timeline({ scrollTrigger: {
+    trigger: aerials,
+    start: "center center",
+    end: "500% top",
+    pin:'.aerials-section',
+    id: "aerials",
+    scrub: true,
+    markers: false
+  }})
+  .fromTo(aerials, 
+      { strokeDasharray: "100, 0, 200, 0"},
+      { strokeDasharray: "0, 1400, 0, 0"})
+  .add("start", "+=0")
+  .fromTo(skyline, 
+  { strokeDasharray: "0, 1400, 0, 0", opacity: 0, autoAlpha: 0},
+  { strokeDasharray: "100, 0, 200, 0", opacity: 1, autoAlpha: 1}, "start+=0")
+  .fromTo(skyline,
+  {scale: 1}, {scale: 0.8}, "start+=0.1")
+  
+
 }
 
 
