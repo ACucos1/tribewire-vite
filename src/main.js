@@ -66,7 +66,7 @@ function animate() {
   let aerialsScrollTl = gsap.timeline({ scrollTrigger: {
     trigger: aerials,
     start: "center center",
-    end: "500% top",
+    end: "400% top",
     pin:'.aerials-section',
     id: "aerials",
     scrub: true,
