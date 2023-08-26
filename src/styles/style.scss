@@ -82,3 +82,11 @@ html {
 /* .aerials svg {
   stroke-dasharray: 100, 0, 200, 0;
 } */
+
+.cursor-img {
+  display: none;
+}
+
+.cursor-img.active {
+  display: block;
+}

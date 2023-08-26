@@ -162,7 +162,7 @@ function cursorBind() {
   });
 
   // Section Interactions
-  const skyline = document.querySelector("#skyline-wrapper");
+  const skyline = document.querySelector("#skyline-wrapper svg");
   const drone = document.querySelectorAll("#drone-wrapper svg path");
   gsap.set(drone, {
     strokeDasharray: "0, 1400, 0, 0",
@@ -197,6 +197,63 @@ function cursorBind() {
     });
 
     gsap.to(cursor, { width: 75, height: 75, ease: Bounce.easeOut });
+  });
+
+  // Stills Section
+  const stillsSection = document.querySelector(".stills-section");
+  const backgroundImages = document.querySelectorAll(".cursor-img");
+  // backgroundImages[0].classList.add("active");
+  gsap.set(backgroundImages, { opacity: 0, autoAlpha: 0 });
+
+  let gindex = 0,
+    last = { x: 0, y: 0 };
+  stillsSection.addEventListener("mousemove", (e) => {
+    if (Math.hypot(e.clientX - last.x, e.clientY - last.y) > 100) {
+      let image = backgroundImages[gindex % backgroundImages.length];
+      let prevImage = backgroundImages[(gindex - 1) % backgroundImages.length];
+      image.classList.add("active");
+      if (prevImage) prevImage.classList.remove("active");
+      gindex++;
+      last.x = e.clientX;
+      last.y = e.clientY;
+    }
+  });
+
+  stillsSection.addEventListener("mouseenter", () => {
+    gsap.to(cursor, {
+      width: 200,
+      height: 300,
+      borderRadius: 0,
+      ease: Bounce.easeOut,
+    });
+
+    gsap.to(backgroundImages, {
+      opacity: 1,
+      autoAlpha: 1,
+      // scale: 1,
+      width: 202,
+      height: 298,
+      borderRadius: 0,
+      ease: Power1.easeOut,
+    });
+  });
+
+  stillsSection.addEventListener("mouseleave", () => {
+    gsap.to(cursor, {
+      width: 75,
+      height: 75,
+      borderRadius: "100%",
+      ease: Bounce.easeOut,
+    });
+    gsap.to(backgroundImages, {
+      opacity: 0,
+      // scale: 0,
+      height: 0,
+      width: 0,
+      autoAlpha: 0,
+      borderRadius: "100%",
+      ease: Power1.easeOut,
+    });
   });
 }
 
