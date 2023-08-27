@@ -128,9 +128,14 @@ function animate() {
     .fromTo(skyline, { scale: 1 }, { scale: 0.8 }, "start+=0.1");
 
   const footer = document.querySelector(".footer");
-  const footerLogo = document.querySelector("#gradient-logo-wrapper svg");
+  const footerTribewireLogo = document.querySelector(
+    "#gradient-tribewire-wrapper svg"
+  );
+  const footerMediaLogo = document.querySelector("#gradient-media-wrapper svg");
 
-  gsap.set(footerLogo, { strokeDasharray: "0 1400 0 0" });
+  gsap.set([footerTribewireLogo, footerMediaLogo], {
+    strokeDasharray: "0 1400 0 0",
+  });
   let logoAnimation = gsap
     .timeline({
       scrollTrigger: {
@@ -140,7 +145,10 @@ function animate() {
         // markers: true,
       },
     })
-    .to(footerLogo, { strokeDasharray: "100, 0 200, 0", duration: 2 });
+    .to([footerTribewireLogo, footerMediaLogo], {
+      strokeDasharray: "100, 0 200, 0",
+      duration: 2,
+    });
 }
 
 function cursorBind() {
