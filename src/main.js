@@ -126,6 +126,21 @@ function animate() {
       "start+=0"
     )
     .fromTo(skyline, { scale: 1 }, { scale: 0.8 }, "start+=0.1");
+
+  const footer = document.querySelector(".footer");
+  const footerLogo = document.querySelector("#gradient-logo-wrapper svg");
+
+  gsap.set(footerLogo, { strokeDasharray: "0 1400 0 0" });
+  let logoAnimation = gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: footer,
+        start: "top center",
+        end: "400% top",
+        // markers: true,
+      },
+    })
+    .to(footerLogo, { strokeDasharray: "100, 0 200, 0", duration: 2 });
 }
 
 function cursorBind() {

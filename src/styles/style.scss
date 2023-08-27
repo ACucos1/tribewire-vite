@@ -79,6 +79,16 @@ html {
   // stroke-width: 5 !important;
 }
 
+#gradient-logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#gradient-logo-wrapper svg {
+  width: 95%;
+}
+
 /* .aerials svg {
   stroke-dasharray: 100, 0, 200, 0;
 } */
