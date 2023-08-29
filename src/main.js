@@ -6,14 +6,14 @@ import "./styles/style.scss";
 
 function animate() {
   let tl = gsap.timeline();
-  let els = document.querySelectorAll(".hero-container > *");
-  tl.fromTo(
-    [els[0], els[1]],
-    { opacity: 0, autoAlpha: 0, y: "200px" },
-    { y: 0, opacity: 1, autoAlpha: 1, duration: 1, delay: 2, stagger: 0.1 }
-  )
-    .add("start", "+=0")
-    .from([els[2], els[3]], { width: 0, duration: 0.5 }, "start");
+  // let els = document.querySelectorAll(".hero-container > *");
+  // tl.fromTo(
+  //   [els[0], els[1]],
+  //   { opacity: 0, autoAlpha: 0, y: "200px" },
+  //   { y: 0, opacity: 1, autoAlpha: 1, duration: 1, delay: 2, stagger: 0.1 }
+  // )
+  //   .add("start", "+=0")
+  //   .from([els[2], els[3]], { width: 0, duration: 0.5 }, "start");
 
   tl.from(".word-wrapper h1", { y: "200px", duration: 0.5, stagger: 0.1 });
   let svg = document.querySelectorAll("#featured-wrapper svg");

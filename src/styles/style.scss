@@ -105,7 +105,6 @@ html {
   cursor: pointer;
 }
 
-// .cursor .point {
-//   background-color: #fff;
-//   mix-blend-mode: difference;
-// }
+.bg-tribe {
+  pointer-events: none;
+}
