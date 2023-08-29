@@ -23,7 +23,7 @@ html {
   position: relative;
 }
 
-.featured-project::before {
+.featured-project::after {
   content: "";
   width: 110%;
   height: 110%;
@@ -100,3 +100,12 @@ html {
 .cursor-img.active {
   display: block;
 }
+
+.cursor-interact {
+  cursor: pointer;
+}
+
+// .cursor .point {
+//   background-color: #fff;
+//   mix-blend-mode: difference;
+// }

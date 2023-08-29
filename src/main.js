@@ -176,12 +176,24 @@ function cursorBind() {
   const cursorInteractiveEls = document.querySelectorAll(".cursor-interact");
   const cursor = document.querySelector(".cursor");
   cursorInteractiveEls.forEach((el) => {
-    el.addEventListener("mouseover", () =>
-      gsap.to(cursor, { height: 125, width: 125, ease: Bounce.easeOut })
-    );
-    el.addEventListener("mouseout", () =>
-      gsap.to(cursor, { height: 75, width: 75, ease: Bounce.easeOut })
-    );
+    el.addEventListener("mouseover", () => {
+      document.querySelector(".cursor-wrap").style.mixBlendMode = "difference";
+      gsap.to(cursor, { height: 125, width: 125, ease: Bounce.easeOut });
+      gsap.to(cursor.querySelector(".point"), {
+        height: 125,
+        width: 125,
+        duration: 0.2,
+      });
+    });
+    el.addEventListener("mouseout", () => {
+      document.querySelector(".cursor-wrap").style.mixBlendMode = "normal";
+      gsap.to(cursor, { height: 75, width: 75, ease: Bounce.easeOut });
+      gsap.to(cursor.querySelector(".point"), {
+        height: 10,
+        width: 10,
+        duration: 0.2,
+      });
+    });
   });
 
   // Section Interactions
@@ -243,6 +255,7 @@ function cursorBind() {
   });
 
   stillsSection.addEventListener("mouseenter", () => {
+    document.querySelector(".cursor-wrap").style.mixBlendMode = "normal";
     gsap.to(cursor, {
       width: 200,
       height: 300,
