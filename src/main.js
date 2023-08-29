@@ -15,7 +15,9 @@ function animate() {
   //   .add("start", "+=0")
   //   .from([els[2], els[3]], { width: 0, duration: 0.5 }, "start");
 
-  tl.from(".word-wrapper h1", { y: "200px", duration: 0.5, stagger: 0.1 });
+  // tl.from(".word-wrapper h1", { y: "200px", duration: 0.5, stagger: 0.1 });
+
+  // Featured Animation
   let svg = document.querySelectorAll("#featured-wrapper svg");
   let featuredScrollTl = gsap
     .timeline({
@@ -47,6 +49,7 @@ function animate() {
       "afterStroke+=0"
     );
 
+  // Stills Animation
   let stills = document.querySelector(".stills-text-img");
   let stillsScrollTl = gsap
     .timeline({
@@ -80,6 +83,7 @@ function animate() {
     );
   // .to(".stills-img-wrapper", {y: "-100%"}, "entrance")
 
+  // Motion Animation
   let motion = document.querySelector(".motion-section");
   gsap.set("#motion-svg-text", {
     transformOrigin: "center center",
@@ -99,6 +103,7 @@ function animate() {
     })
     .fromTo("#motion-svg-text", { scale: 20 }, { scale: 1 });
 
+  // Aerials Animation
   let aerials = document.querySelector(".aerials svg");
   let skyline = document.querySelector(".skyline svg");
   let aerialsScrollTl = gsap
@@ -127,6 +132,7 @@ function animate() {
     )
     .fromTo(skyline, { scale: 1 }, { scale: 0.8 }, "start+=0.1");
 
+  // Footer Animation
   const footer = document.querySelector(".footer");
   const footerTribewireLogo = document.querySelector(
     "#gradient-tribewire-wrapper svg"
@@ -170,6 +176,30 @@ function cursorBind() {
         });
       },
     });
+  });
+
+  // Menu Burger
+  let menuOpen = false;
+  const burger = document.querySelector(".burger-wrapper");
+  const burgerBars = burger.querySelectorAll(".burger-bar");
+  const burgerTl = gsap
+    .timeline({ paused: true })
+    .to([burgerBars[0], burgerBars[2]], {
+      top: "50%",
+      y: "-50%",
+      duration: 0.3,
+    })
+
+    .add("translate", "+=0")
+    .to(burgerBars[0], { rotate: 45, duration: 0.1 }, "translate+=0")
+    .to(
+      [burgerBars[1], burgerBars[2]],
+      { rotate: -45, duration: 0.1 },
+      "translate+=0"
+    );
+  burger.addEventListener("click", () => {
+    menuOpen == false ? burgerTl.play() : burgerTl.reverse();
+    menuOpen = !menuOpen;
   });
 
   // Link Interactions
