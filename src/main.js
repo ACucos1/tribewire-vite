@@ -180,6 +180,7 @@ function cursorBind() {
 
   // Menu Burger
   let menuOpen = false;
+  const menu = document.querySelector(".menu");
   const burger = document.querySelector(".burger-wrapper");
   const burgerBars = burger.querySelectorAll(".burger-bar");
   const burgerTl = gsap
@@ -189,13 +190,19 @@ function cursorBind() {
       y: "-50%",
       duration: 0.3,
     })
-
     .add("translate", "+=0")
     .to(burgerBars[0], { rotate: 45, duration: 0.1 }, "translate+=0")
     .to(
       [burgerBars[1], burgerBars[2]],
       { rotate: -45, duration: 0.1 },
       "translate+=0"
+    )
+    .to(
+      menu,
+      {
+        y: 0,
+      },
+      "translate-=0.3"
     );
   burger.addEventListener("click", () => {
     menuOpen == false ? burgerTl.play() : burgerTl.reverse();
