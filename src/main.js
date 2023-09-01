@@ -350,6 +350,7 @@ function swupSetup() {
   return new Swup({
     plugins: [
       new SwupJsPlugin({
+        animateHistoryBrowsing: true,
         animations: [
           {
             from: "(.*)",
