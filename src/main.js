@@ -8,6 +8,9 @@ gsap.registerPlugin(ScrollToPlugin);
 import Lenis from "@studio-freight/lenis";
 import "./styles/style.scss";
 
+let burgerOpenTl;
+let menuOpenTl;
+
 function indexScrollTriggerInit() {
   if (window.location.pathname == "/") {
     // Featured Animation
@@ -184,7 +187,7 @@ function cursorInteractions() {
   const menuLinks = document.querySelectorAll(".menu-link");
   const burger = document.querySelector(".burger-wrapper");
   const burgerBars = burger.querySelectorAll(".burger-bar");
-  const burgerTl = gsap
+  burgerOpenTl = gsap
     .timeline({ paused: true })
     .to([burgerBars[0], burgerBars[2]], {
       top: "50%",
@@ -197,25 +200,31 @@ function cursorInteractions() {
       [burgerBars[1], burgerBars[2]],
       { rotate: -45, duration: 0.1 },
       "translate+=0"
-    )
-    .to(
-      menu,
-      {
-        y: 0,
-      },
-      "translate-=0.3"
-    )
+    );
+
+  menuOpenTl = gsap
+    .timeline({ paused: true })
+    .to(menu, {
+      y: 0,
+      duration: 0.25,
+    })
     .fromTo(
       menuLinks,
       {
         y: 120,
       },
-      { y: 0, stagger: 0.1 },
-      "translate+=0"
+      { y: 0, stagger: 0.1, duration: 0.25 }
     );
 
   burger.addEventListener("click", () => {
-    menuOpen == false ? burgerTl.play() : burgerTl.reverse();
+    if (menuOpen == false) {
+      burgerOpenTl.play();
+      menuOpenTl.play();
+    } else {
+      burgerOpenTl.reverse(0.5, false);
+      menuOpenTl.reverse(0.5, false);
+    }
+
     menuOpen = !menuOpen;
   });
 
@@ -356,6 +365,7 @@ function swupSetup() {
             from: "(.*)",
             to: "(.*)",
             out: (done) => {
+              lenis.stop();
               // const container = document.querySelector("#swup");
               const wiper1 = document.querySelector(".wiper1");
               const wiper2 = document.querySelector(".wiper2");
@@ -365,9 +375,13 @@ function swupSetup() {
               });
               gsap.to([wiper1, wiper2], {
                 x: 0,
-                duration: 0.5,
-                stagger: 0.1,
-                onComplete: done,
+                duration: 0.3,
+                stagger: 0.05,
+                ease: Power1.ease,
+                onComplete: () => {
+                  lenis.start();
+                  done();
+                },
               });
             },
             in: (done) => {
@@ -379,10 +393,11 @@ function swupSetup() {
                 x: 0,
               });
 
-              gsap.to([wiper1, wiper2], {
+              gsap.to([wiper2, wiper1], {
                 x: "100%",
-                stagger: 0.1,
-                duration: 0.5,
+                stagger: 0.05,
+                duration: 0.3,
+                ease: Power1.ease,
                 onComplete: done,
               });
             },
@@ -393,7 +408,7 @@ function swupSetup() {
   });
 }
 
-const svgs = [
+const indexSvgs = [
   {
     target: "#featured-wrapper",
     url: "https://raw.githubusercontent.com/ACucos1/Tribewire/main/featured.html",
@@ -401,6 +416,17 @@ const svgs = [
   {
     target: "#skyline-wrapper",
     url: "https://raw.githubusercontent.com/ACucos1/Tribewire/main/torontoskyline.html",
+  },
+];
+
+const footerSvgs = [
+  {
+    target: "#gradient-tribewire-wrapper",
+    url: "https://raw.githubusercontent.com/ACucos1/Tribewire/main/gradient-tribewire.html",
+  },
+  {
+    target: "#gradient-media-wrapper",
+    url: "https://raw.githubusercontent.com/ACucos1/Tribewire/main/gradient-media.html",
   },
 ];
 
@@ -412,13 +438,22 @@ async function fetchSVG(targetId, url) {
   console.log("SVG Injected");
 }
 
-async function fetchAllSvgs(svgs) {
+async function fetchSvgs(svgs) {
   const promises = svgs.map((svg) => fetchSVG(svg.target, svg.url));
   await Promise.all(promises);
 }
 
+const lenis = new Lenis({ duration: 1.2 });
+function raf(time) {
+  lenis.raf(time);
+  ScrollTrigger.update();
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
 async function init() {
-  if (window.location.pathname == "/") await fetchAllSvgs(svgs);
+  if (window.location.pathname == "/") await fetchSvgs(indexSvgs);
+  await fetchSvgs(footerSvgs);
   indexScrollTriggerInit();
   cursorInteractions();
 
@@ -427,8 +462,10 @@ async function init() {
   swup.hooks.on("page:view", async () => {
     console.log("Page Changed. Initializing Scroll Triggers...");
     if (window.location.pathname == "/") {
-      await fetchAllSvgs(svgs);
+      await fetchSvgs(indexSvgs);
     }
+    burgerOpenTl.kill();
+    menuOpenTl.kill();
     indexScrollTriggerInit();
     cursorInteractions();
   });
@@ -453,11 +490,3 @@ if (document.readyState !== "loading") {
     init();
   });
 }
-
-const lenis = new Lenis({ duration: 1.2 });
-function raf(time) {
-  lenis.raf(time);
-  ScrollTrigger.update();
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
