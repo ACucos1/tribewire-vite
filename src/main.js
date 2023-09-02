@@ -348,9 +348,9 @@ function cursorInteractions() {
 
 function swupSetup() {
   return new Swup({
+    animateHistoryBrowsing: true,
     plugins: [
       new SwupJsPlugin({
-        animateHistoryBrowsing: true,
         animations: [
           {
             from: "(.*)",
