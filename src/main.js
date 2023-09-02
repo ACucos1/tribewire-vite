@@ -10,6 +10,8 @@ import "./styles/style.scss";
 
 let burgerOpenTl;
 let menuOpenTl;
+let menuOpen = false;
+let burgerEventListenereAttached = false;
 
 function indexScrollTriggerInit() {
   if (window.location.pathname == "/") {
@@ -182,7 +184,7 @@ function cursorInteractions() {
   });
 
   // Menu
-  let menuOpen = false;
+  // let menuOpen = false;
   const menu = document.querySelector(".menu");
   const menuLinks = document.querySelectorAll(".menu-link");
   const burger = document.querySelector(".burger-wrapper");
@@ -216,17 +218,21 @@ function cursorInteractions() {
       { y: 0, stagger: 0.1, duration: 0.25 }
     );
 
-  burger.addEventListener("click", () => {
-    if (menuOpen == false) {
-      burgerOpenTl.play();
-      menuOpenTl.play();
-    } else {
-      burgerOpenTl.reverse(0.5, false);
-      menuOpenTl.reverse(0.5, false);
-    }
+  if (burgerEventListenereAttached == false) {
+    burgerEventListenereAttached = true;
+    burger.addEventListener("click", () => {
+      console.log(`menuOpen: ${menuOpen}`);
+      if (menuOpen == false) {
+        burgerOpenTl.play();
+        menuOpenTl.play();
+      } else {
+        burgerOpenTl.reverse(0.5, false);
+        menuOpenTl.reverse(0.5, false);
+      }
 
-    menuOpen = !menuOpen;
-  });
+      menuOpen = !menuOpen;
+    });
+  }
 
   // Link Interactions
   const cursorInteractiveEls = document.querySelectorAll(".cursor-interact");
@@ -473,6 +479,11 @@ async function init() {
   swup.hooks.on(
     "content:replace",
     () => {
+      if (menuOpen) {
+        burgerOpenTl.revert();
+        menuOpenTl.revert();
+        menuOpen = false;
+      }
       ScrollTrigger.getAll().forEach((st) => {
         st.kill();
       });
