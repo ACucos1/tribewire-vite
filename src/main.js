@@ -360,7 +360,9 @@ function swupSetup() {
               const wiper1 = document.querySelector(".wiper1");
               const wiper2 = document.querySelector(".wiper2");
               // container.style.opacity = 1;
-
+              gsap.set([wiper1, wiper2], {
+                x: "-100%",
+              });
               gsap.to([wiper1, wiper2], {
                 x: 0,
                 duration: 0.5,
