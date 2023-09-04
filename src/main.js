@@ -13,6 +13,13 @@ let menuOpenTl;
 let menuOpen = false;
 let burgerEventListenereAttached = false;
 
+function sanitizeLightboxHrefs() {
+  const els = document.querySelectorAll(".lightbox-link");
+  els.forEach((el) => {
+    el.href = "javascript:void(0)";
+  });
+}
+
 function indexScrollTriggerInit() {
   if (window.location.pathname == "/") {
     // Featured Animation
@@ -414,6 +421,11 @@ function swupSetup() {
   });
 }
 
+function restartWebflow() {
+  window.Webflow && window.Webflow.destroy();
+  window.Webflow && window.Webflow.ready();
+}
+
 const indexSvgs = [
   {
     target: "#featured-wrapper",
@@ -462,7 +474,7 @@ async function init() {
   await fetchSvgs(footerSvgs);
   indexScrollTriggerInit();
   cursorInteractions();
-
+  sanitizeLightboxHrefs();
   const swup = swupSetup();
 
   swup.hooks.on("page:view", async () => {
@@ -474,6 +486,8 @@ async function init() {
     menuOpenTl.kill();
     indexScrollTriggerInit();
     cursorInteractions();
+    sanitizeLightboxHrefs();
+    restartWebflow();
   });
 
   swup.hooks.on(
