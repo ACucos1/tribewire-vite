@@ -220,7 +220,7 @@ function cursorInteractions() {
     .fromTo(
       menuLinks,
       {
-        y: 120,
+        y: 300,
       },
       { y: 0, stagger: 0.1, duration: 0.25 }
     );
@@ -243,6 +243,7 @@ function cursorInteractions() {
 
   // Link Interactions
   const cursorInteractiveEls = document.querySelectorAll(".cursor-interact");
+  const cursorIgnoreEls = document.querySelectorAll(".cursor-ignore");
   const cursor = document.querySelector(".cursor");
   cursorInteractiveEls.forEach((el) => {
     el.addEventListener("mouseover", () => {
@@ -262,6 +263,16 @@ function cursorInteractions() {
         width: 10,
         duration: 0.2,
       });
+    });
+  });
+
+  cursorIgnoreEls.forEach((el) => {
+    el.addEventListener("mouseover", () => {
+      console.log("Ignoring Cursor");
+      gsap.to(cursor, { opacity: 0, autoAlpha: 0, duration: 0.3 });
+    });
+    el.addEventListener("mouseout", () => {
+      gsap.to(cursor, { opacity: 1, autoAlpha: 1, duration: 0.3 });
     });
   });
 
