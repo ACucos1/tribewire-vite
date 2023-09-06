@@ -117,6 +117,9 @@ body {
   display: none;
 }
 
+.cursor .arrow {
+  opacity: 0;
+}
 .cursor-img.active {
   display: block;
 }

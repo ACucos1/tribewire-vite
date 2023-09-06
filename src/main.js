@@ -243,6 +243,7 @@ function cursorInteractions() {
 
   // Link Interactions
   const cursorInteractiveEls = document.querySelectorAll(".cursor-interact");
+  const cursorArrow = document.querySelector(".cursor .arrow");
   const cursorIgnoreEls = document.querySelectorAll(".cursor-ignore");
   const cursor = document.querySelector(".cursor");
   cursorInteractiveEls.forEach((el) => {
@@ -254,6 +255,11 @@ function cursorInteractions() {
         width: 125,
         duration: 0.2,
       });
+      gsap.to(cursorArrow, {
+        opacity: 1,
+        autoAlpha: 1,
+        ease: Power1.easeInOut,
+      });
     });
     el.addEventListener("mouseout", () => {
       document.querySelector(".cursor-wrap").style.mixBlendMode = "normal";
@@ -262,6 +268,11 @@ function cursorInteractions() {
         height: 10,
         width: 10,
         duration: 0.2,
+      });
+      gsap.to(cursorArrow, {
+        opacity: 0,
+        autoAlpha: 0,
+        ease: Power1.easeInOut,
       });
     });
   });
@@ -348,6 +359,12 @@ function cursorInteractions() {
         ease: Bounce.easeOut,
       });
 
+      gsap.to(cursorArrow, {
+        opacity: 1,
+        autoAlpha: 1,
+        ease: Power1.easeInOut,
+      });
+
       gsap.to(backgroundImages, {
         opacity: 1,
         autoAlpha: 1,
@@ -365,6 +382,12 @@ function cursorInteractions() {
         height: 75,
         borderRadius: "100%",
         ease: Bounce.easeOut,
+      });
+
+      gsap.to(cursorArrow, {
+        opacity: 0,
+        autoAlpha: 0,
+        ease: Power1.easeInOut,
       });
       gsap.to(backgroundImages, {
         opacity: 0,
