@@ -12,6 +12,7 @@ let burgerOpenTl;
 let menuOpenTl;
 let menuOpen = false;
 let burgerEventListenereAttached = false;
+let textTranslateTl;
 
 function sanitizeLightboxHrefs() {
   const els = document.querySelectorAll(".lightbox-link");
@@ -211,19 +212,17 @@ function cursorInteractions() {
       "translate+=0"
     );
 
-  menuOpenTl = gsap
-    .timeline({ paused: true })
-    .to(menu, {
-      y: 0,
-      duration: 0.25,
-    })
-    .fromTo(
-      menuLinks,
-      {
-        y: 300,
-      },
-      { y: 0, stagger: 0.1, duration: 0.25 }
-    );
+  menuOpenTl = gsap.timeline({ paused: true }).to(menu, {
+    y: 0,
+    duration: 0.25,
+  });
+  textTranslateTl = gsap.timeline({ paused: true }).fromTo(
+    menuLinks,
+    {
+      y: 300,
+    },
+    { y: 0, delay: 0.2, duration: 0.25 }
+  );
 
   if (burgerEventListenereAttached == false) {
     burgerEventListenereAttached = true;
@@ -232,9 +231,11 @@ function cursorInteractions() {
       if (menuOpen == false) {
         burgerOpenTl.play();
         menuOpenTl.play();
+        textTranslateTl.play();
       } else {
         burgerOpenTl.reverse(0.5, false);
-        menuOpenTl.reverse(0.5, false);
+        menuOpenTl.reverse();
+        textTranslateTl.reverse();
       }
 
       menuOpen = !menuOpen;
@@ -258,7 +259,8 @@ function cursorInteractions() {
       gsap.to(cursorArrow, {
         opacity: 1,
         autoAlpha: 1,
-        ease: Power1.easeInOut,
+        scale: 1,
+        ease: Bounce.easeOut,
       });
     });
     el.addEventListener("mouseout", () => {
@@ -272,7 +274,8 @@ function cursorInteractions() {
       gsap.to(cursorArrow, {
         opacity: 0,
         autoAlpha: 0,
-        ease: Power1.easeInOut,
+        scale: 0,
+        ease: Power1.easeOut,
       });
     });
   });
@@ -311,7 +314,7 @@ function cursorInteractions() {
           duration: 1,
           ease: Power1.easeOut,
         });
-        gsap.to(cursor, { width: 0, height: 0, ease: Bounce.easeOut });
+        gsap.to(cursor, { width: 250, height: 250, ease: Bounce.easeOut });
       });
     skyline &&
       skyline.addEventListener("mouseleave", () => {
@@ -362,7 +365,9 @@ function cursorInteractions() {
       gsap.to(cursorArrow, {
         opacity: 1,
         autoAlpha: 1,
-        ease: Power1.easeInOut,
+        scale: 1,
+        delay: 0.2,
+        ease: Bounce.easeOut,
       });
 
       gsap.to(backgroundImages, {
@@ -387,8 +392,10 @@ function cursorInteractions() {
       gsap.to(cursorArrow, {
         opacity: 0,
         autoAlpha: 0,
+        scale: 0,
         ease: Power1.easeInOut,
       });
+
       gsap.to(backgroundImages, {
         opacity: 0,
         // scale: 0,
