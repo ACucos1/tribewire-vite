@@ -132,3 +132,11 @@ body {
 .bg-tribe {
   pointer-events: none;
 }
+
+.menu-link {
+  transition: color 0.3s ease;
+}
+
+.menu-link:hover {
+  color: white;
+}
