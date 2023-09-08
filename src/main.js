@@ -176,7 +176,7 @@ function cursorInteractions() {
     gsap.to(cursor, {
       x: e.clientX - window.innerWidth / 2,
       y: e.clientY - window.innerHeight / 2,
-      // duration: 1,
+      // duration: 0.5,
       ease: Power1.easeOut,
     });
     gsap.to(cursor.querySelector("#drone-wrapper svg"), {
@@ -214,14 +214,14 @@ function cursorInteractions() {
 
   menuOpenTl = gsap.timeline({ paused: true }).to(menu, {
     y: 0,
-    duration: 0.25,
+    duration: 0.75,
   });
   textTranslateTl = gsap.timeline({ paused: true }).fromTo(
     menuLinks,
     {
       y: 300,
     },
-    { y: 0, delay: 0.2, duration: 0.25 }
+    { y: 0, delay: 0.2, duration: 0.5, ease: Power1.easeInOut }
   );
 
   if (burgerEventListenereAttached == false) {

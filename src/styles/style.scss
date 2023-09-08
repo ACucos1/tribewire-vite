@@ -140,3 +140,13 @@ body {
 .menu-link:hover {
   color: white;
 }
+
+.submit-button {
+  transition: background-color 0.3s ease, -webkit-text-stroke-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: white;
+  // color: #151515;
+  -webkit-text-stroke-color: #151515;
+}
