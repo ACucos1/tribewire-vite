@@ -108,7 +108,7 @@ function indexScrollTriggerInit() {
           markers: false,
         },
       })
-      .fromTo("#motion-svg-text", { scale: 20 }, { scale: 1 });
+      .fromTo("#motion-svg-text", { scale: 40 }, { scale: 1 });
 
     // Aerials Animation
     setTimeout(() => {
