@@ -21,6 +21,31 @@ function sanitizeLightboxHrefs() {
     el.href = "javascript:void(0)";
   });
 }
+function generalEntranceAnimation() {
+  let elements = document.querySelectorAll("#swup > * > *");
+  console.log(elements);
+  elements.forEach((elem) => {
+    gsap.fromTo(
+      elem,
+      { y: 100, opacity: 0 },
+      {
+        delay: 0.25,
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: Power2.easeInOut,
+        scrollTrigger: {
+          trigger: elem,
+          start: "top bottom",
+          ender: "bottom: center",
+          markers: false,
+        },
+      }
+    );
+  });
+
+  // generalEntranceTl.play();
+}
 
 function entranceAnimation() {
   if (window.location.pathname == "/") {
@@ -542,6 +567,7 @@ requestAnimationFrame(raf);
 
 async function init() {
   if (window.location.pathname == "/") entranceAnimation();
+  else generalEntranceAnimation();
   if (window.location.pathname == "/") await fetchSvgs(indexSvgs);
   await fetchSvgs(footerSvgs);
   indexScrollTriggerInit();
@@ -553,7 +579,7 @@ async function init() {
     console.log("Page Changed. Initializing Scroll Triggers...");
     if (window.location.pathname == "/") {
       await fetchSvgs(indexSvgs);
-    }
+    } else generalEntranceAnimation();
     burgerOpenTl.kill();
     menuOpenTl.kill();
     indexScrollTriggerInit();
