@@ -1,4 +1,4 @@
-import { gsap, Bounce, Power1 } from "gsap";
+import { gsap, Bounce, Power1, Power2, Power3, Power4 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import Swup from "swup";
@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollToPlugin);
 import Lenis from "@studio-freight/lenis";
 import "./styles/style.scss";
 
+let entranceTl;
 let burgerOpenTl;
 let menuOpenTl;
 let menuOpen = false;
@@ -19,6 +20,29 @@ function sanitizeLightboxHrefs() {
   els.forEach((el) => {
     el.href = "javascript:void(0)";
   });
+}
+
+function entranceAnimation() {
+  if (window.location.pathname == "/") {
+    let heroText = document.querySelector(".title-wrapper .text-block");
+    console.log(heroText.textContent);
+    let heroImage = document.querySelector(".hero-image");
+    entranceTl = gsap.timeline({ paused: true }).fromTo(
+      [heroText, heroImage],
+      { opacity: 0, scale: 1.2, filter: "blur(10px)" },
+      {
+        filter: "blur(0px)",
+        opacity: 1,
+        stagger: 0.05,
+        scale: 1,
+        duration: 1,
+        ease: Power2.easeInOut,
+        delay: 0.5,
+      }
+    );
+
+    entranceTl.play();
+  }
 }
 
 function indexScrollTriggerInit() {
@@ -517,6 +541,7 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 async function init() {
+  if (window.location.pathname == "/") entranceAnimation();
   if (window.location.pathname == "/") await fetchSvgs(indexSvgs);
   await fetchSvgs(footerSvgs);
   indexScrollTriggerInit();
