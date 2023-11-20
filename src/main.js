@@ -29,7 +29,7 @@ function indexScrollTriggerInit() {
       .timeline({
         scrollTrigger: {
           trigger: svg,
-          start: "125% center",
+          start: "145% center",
           end: "2000% top",
           pin: ".featured-section",
           scrub: true,
