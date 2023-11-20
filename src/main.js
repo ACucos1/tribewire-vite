@@ -29,7 +29,7 @@ function indexScrollTriggerInit() {
       .timeline({
         scrollTrigger: {
           trigger: svg,
-          start: "bottom center",
+          start: "125% center",
           end: "2000% top",
           pin: ".featured-section",
           scrub: true,
@@ -41,17 +41,23 @@ function indexScrollTriggerInit() {
       .add("afterStroke", "+=0")
       .to(
         "#rect2, #rect3, #rect6, #rect8",
-        { width: 0, stagger: 0.5 },
+        { width: 0, stagger: 0.25 },
         "afterStroke"
       )
       .to(
         "#rect1, #rect4, #rect5, #rect7",
-        { height: 0, stagger: 0.5 },
+        { height: 0, stagger: 0.25 },
         "afterStroke"
       )
       .fromTo(
         ".featured-project",
         { y: 200, opacity: 0, autoAlpha: 1 },
+        { y: 0, opacity: 1, autoAlpha: 1, stagger: 0.5 },
+        "afterStroke+=0"
+      )
+      .fromTo(
+        ".featured-project-label",
+        { y: 50, opacity: 0, autoAlpha: 0 },
         { y: 0, opacity: 1, autoAlpha: 1, stagger: 0.5 },
         "afterStroke+=0"
       );
@@ -214,14 +220,14 @@ function cursorInteractions() {
 
   menuOpenTl = gsap.timeline({ paused: true }).to(menu, {
     y: 0,
-    duration: 0.75,
+    duration: 0.3,
   });
   textTranslateTl = gsap.timeline({ paused: true }).fromTo(
     menuLinks,
     {
       y: 300,
     },
-    { y: 0, delay: 0.2, duration: 0.5, ease: Power1.easeInOut }
+    { y: 0, delay: 0.2, duration: 0.3, ease: Power1.easeOut }
   );
 
   if (burgerEventListenereAttached == false) {
