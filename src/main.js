@@ -23,15 +23,17 @@ function sanitizeLightboxHrefs() {
 }
 function generalEntranceAnimation() {
   let elements = document.querySelectorAll("#swup > * > *");
-  console.log(elements);
   elements.forEach((elem) => {
+    let targets = elem.querySelectorAll(".w-dyn-item");
+    // console.log(targets);
     gsap.fromTo(
-      elem,
+      [elem, targets],
       { y: 100, opacity: 0 },
       {
         delay: 0.25,
         y: 0,
         opacity: 1,
+        stagger: 0.1,
         duration: 1,
         ease: Power2.easeInOut,
         scrollTrigger: {
