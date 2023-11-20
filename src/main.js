@@ -74,13 +74,15 @@ function entranceAnimation() {
 
 function indexScrollTriggerInit() {
   if (window.location.pathname == "/") {
+    const viewportWidth = window.innerWidth;
+
     // Featured Animation
     let svg = document.querySelector("#featured-wrapper svg");
     let featuredScrollTl = gsap
       .timeline({
         scrollTrigger: {
           trigger: svg,
-          start: "145% center",
+          start: viewportWidth > 767 ? "145% center" : "550% center",
           end: "2000% top",
           pin: ".featured-section",
           scrub: true,
