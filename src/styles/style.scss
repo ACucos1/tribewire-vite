@@ -32,29 +32,29 @@ body {
   background: linear-gradient(180deg, #ff6b00 42.71%, #ffe600 100%);
 }
 
-#featured-wrapper svg {
+#experience-wrapper svg {
   /* background-color: red; */
   stroke-dasharray: 0, 1800, 0, 0;
   stroke-dashoffset: 1800;
   /*animation: expanding-ants 3s linear forwards;*/
 }
 
-.featured-project {
-  position: relative;
-}
+// .featured-project {
+//   position: relative;
+// }
 
-.featured-project::after {
-  content: "";
-  width: 110%;
-  height: 110%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 100%;
-  border: 2px solid gray;
-  display: inline-block;
-}
+// .featured-project::after {
+//   content: "";
+//   width: 110%;
+//   height: 110%;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   border-radius: 100%;
+//   border: 2px solid gray;
+//   display: inline-block;
+// }
 
 #motion-svg rect {
   fill: #282828;

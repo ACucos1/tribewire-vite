@@ -77,12 +77,12 @@ function indexScrollTriggerInit() {
     const viewportWidth = window.innerWidth;
 
     // Featured Animation
-    let svg = document.querySelector("#featured-wrapper svg");
+    let svg = document.querySelector("#experience-wrapper svg");
     let featuredScrollTl = gsap
       .timeline({
         scrollTrigger: {
           trigger: svg,
-          start: viewportWidth > 767 ? "145% center" : "550% center",
+          start: viewportWidth > 767 ? "160% center" : "550% center",
           end: "2000% top",
           pin: ".featured-section",
           scrub: true,
@@ -93,21 +93,35 @@ function indexScrollTriggerInit() {
       .to(svg, { strokeDasharray: "100, 0, 200, 0" })
       .add("afterStroke", "+=0")
       .to(
-        "#rect2, #rect3, #rect6, #rect8",
+        "#rect2, #rect3, #rect6, #rect8, #rect10",
         { width: 0, stagger: 0.25 },
         "afterStroke"
       )
       .to(
-        "#rect1, #rect4, #rect5, #rect7",
+        "#rect1, #rect4, #rect5, #rect7, #rect9",
         { height: 0, stagger: 0.25 },
         "afterStroke"
       )
-      .fromTo(
-        ".featured-project",
-        { y: 200, opacity: 0, autoAlpha: 1 },
-        { y: 0, opacity: 1, autoAlpha: 1, stagger: 0.5 },
-        "afterStroke+=0"
+      // .fromTo(
+      //   ".project-wrapper",
+      //   {  opacity: 1, autoAlpha: 1, stagger: 1.5 },
+      //   "afterStroke+=0"
+      // )
+      .to(
+        Array.from(
+          document.querySelectorAll(
+            ".project-wrapper:not(.project-wrapper:first-child)"
+          )
+        ).reverse(),
+        { height: 0, stagger: 1 },
+        "afterStroke+=1"
       )
+      // .fromTo(
+      //   ".project-wrapper",
+      //   { y: 100, opacity: 0, autoAlpha: 1 },
+      //   { y: 0, opacity: 1, autoAlpha: 1, stagger: 1 },
+      //   "afterStroke+=0"
+      // )
       .fromTo(
         ".featured-project-label",
         { y: 50, opacity: 0, autoAlpha: 0 },
@@ -528,8 +542,8 @@ function restartWebflow() {
 
 const indexSvgs = [
   {
-    target: "#featured-wrapper",
-    url: "https://raw.githubusercontent.com/ACucos1/Tribewire/main/featured.html",
+    target: "#experience-wrapper",
+    url: "https://raw.githubusercontent.com/ACucos1/Tribewire/main/experience.html",
   },
   {
     target: "#skyline-wrapper",
