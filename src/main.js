@@ -109,8 +109,8 @@ function indexScrollTriggerInit() {
             ".project-wrapper:not(.project-wrapper:first-child)"
           )
         ).reverse(),
-        { height: 0, stagger: 1 },
-        "afterStroke+=1"
+        { height: 0, stagger: 0.5 },
+        "afterStroke+=0.5"
       )
       // .fromTo(
       //   ".project-wrapper",
