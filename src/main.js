@@ -102,11 +102,7 @@ function indexScrollTriggerInit() {
         { height: 0, stagger: 0.25 },
         "afterStroke"
       )
-      // .fromTo(
-      //   ".project-wrapper",
-      //   {  opacity: 1, autoAlpha: 1, stagger: 1.5 },
-      //   "afterStroke+=0"
-      // )
+      .from(".project-wrapper", { y: 0, height: 0 }, "afterStroke+=0")
       .to(
         Array.from(
           document.querySelectorAll(
